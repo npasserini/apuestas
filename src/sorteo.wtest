@@ -1,0 +1,36 @@
+import sorteo.*
+
+object apuestaGanadora {
+	method esGanadora(sorteo) {
+		return true
+	}
+}
+
+object apuestaPerdedora {
+	method esGanadora(sorteo) {
+		return false
+	}
+}
+
+describe "sorteo" {
+	test "apuestasGanadoras me devuelve sólo las apuestas ganadoras" {
+		sorteo.agregarApuesta(apuestaGanadora)
+		sorteo.agregarApuesta(apuestaPerdedora)
+		
+		const ganadoras = sorteo.apuestasGanadoras()
+		assert.equals(1, ganadoras.size())
+		assert.that(ganadoras.contains(apuestaGanadora))
+		assert.notThat(ganadoras.contains(apuestaPerdedora))
+	}
+	
+	test "apuestasPerdedoras me devuelve sólo las apuestas no ganadoras" {
+		sorteo.agregarApuesta(apuestaGanadora)
+		sorteo.agregarApuesta(apuestaPerdedora)
+		
+		const ganadoras = sorteo.apuestasPerdedoras()
+		assert.equals(1, ganadoras.size())
+		assert.notThat(ganadoras.contains(apuestaGanadora))
+		assert.that(ganadoras.contains(apuestaPerdedora))
+	}
+}
+

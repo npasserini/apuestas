@@ -1,0 +1,33 @@
+import sorteo.*
+import apuestas.ApuestaALosPrimerosDos
+
+describe "apuesta a los primeros dos" {
+
+//		A los primeros 2: El jugador apuesta que su número va a salir primero o segundo.
+//		El premio es de 30 veces el monto apostado con un máximo del 5 % del total
+//		recaudado.	
+
+	const apuesta = new ApuestaALosPrimerosDos(26, "nicolas")
+	
+	fixture {
+		sorteo.agregarApuesta(apuesta)
+	}
+	
+	method gana() = sorteo.apuestasGanadoras().contains(apuesta)
+
+	test "gana si el numero apostado sale primero" {
+		sorteo.numerosGanadores([26])
+		assert.that(self.gana())
+	}
+	
+	test "gana si el numero apostado sale segundo" {
+		sorteo.numerosGanadores([10, 26])
+		assert.that(self.gana())
+	}
+	
+	test "pierde si el numero apostado sale en otra posición" {
+		sorteo.numerosGanadores([10, 11, 26])
+		assert.notThat(self.gana())
+	}
+	
+}

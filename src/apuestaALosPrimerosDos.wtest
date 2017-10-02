@@ -1,8 +1,7 @@
 import sorteo.*
-import apuestas.ApuestaALosPrimerosDos
+import apuestas.*
 
 describe "apuesta a los primeros dos" {
-
 //		A los primeros 2: El jugador apuesta que su número va a salir primero o segundo.
 //		El premio es de 30 veces el monto apostado con un máximo del 5 % del total
 //		recaudado.	

@@ -25,6 +25,6 @@ describe "apuesta a la cabeza" {
 		sorteo.agregarApuesta(new ApuestaALaCabeza(100000, 123123, "un loco"))
 		
 		sorteo.numerosGanadores([31, 26])
-		assert.equals(100020 - 300, sorteo.beneficio())
+		assert.equals(100000 + 10 + 20 - 300, sorteo.beneficio())
 	}
 } 
